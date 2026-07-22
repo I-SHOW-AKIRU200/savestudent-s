@@ -1,0 +1,6 @@
+# Allow all crawlers (including AI browsing tools)
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://savestudents.akiru.online/sitemap.xml
