@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier — CJP Student Protests &amp; the 20 July 2026 Crackdown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a16;
+    --paper:#f2ede1;
+    --paper-2:#e9e2d1;
+    --siren:#b23a2e;
+    --olive:#5c6b57;
+    --stamp-gray:#8a8270;
+    --line:rgba(26,26,22,0.18);
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(178,58,46,0.05), transparent 45%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body.lang-hi{
+    font-family:'Noto Serif Devanagari', 'Source Serif 4', serif;
+  }
+  body.lang-hi .eyebrow,
+  body.lang-hi .tag,
+  body.lang-hi .file-meta,
+  body.lang-hi .when,
+  body.lang-hi .label,
+  body.lang-hi .stamp,
+  body.lang-hi figcaption,
+  body.lang-hi .sources,
+  body.lang-hi footer,
+  body.lang-hi blockquote cite,
+  body.lang-hi .versus-col h4{
+    font-family:'Noto Sans Devanagari', 'Space Mono', monospace;
+  }
+  body.lang-hi h1.title,
+  body.lang-hi h2,
+  body.lang-hi h3{
+    font-family:'Noto Serif Devanagari', 'Fraunces', serif;
+  }
+
+  /* subtle paper grain */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.5;
+    background-image:
+      url("https://www.transparenttextures.com/patterns/cardboard-flat.png");
+    mix-blend-mode:multiply;
+  }
+
+  a{color:var(--siren);}
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:840px;
+    margin:0 auto;
+    padding:0 24px 120px;
+  }
+
+  /* ---------- LANGUAGE TOGGLE ---------- */
+  .lang-toggle-bar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    justify-content:flex-end;
+    padding:10px 24px;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .lang-toggle{
+    display:inline-flex;
+    border:2px solid var(--ink);
+    border-radius:999px;
+    overflow:hidden;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .lang-toggle button{
+    border:none;
+    background:var(--paper);
+    color:var(--ink);
+    padding:7px 16px;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:inherit;
+    letter-spacing:inherit;
+    text-transform:inherit;
+  }
+  .lang-toggle button.active{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .lang-toggle button:focus-visible{
+    outline:2px solid var(--siren);
+    outline-offset:-2px;
+  }
+
+  /* hide inactive language content */
+  [data-lang]{display:none;}
+  [data-lang].lang-active{display:block;}
+  span[data-lang].lang-active,
+  em[data-lang].lang-active,
+  strong[data-lang].lang-active{display:inline;}
+  li[data-lang].lang-active{display:list-item;}
+
+  /* ---------- MASTHEAD ---------- */
+  header.masthead{
+    padding:56px 0 28px;
+    border-bottom:3px solid var(--ink);
+    margin-bottom:8px;
+  }
+
+  .file-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--olive);
+    margin-bottom:22px;
+  }
+  .file-meta span{display:block;}
+  .file-meta .right{text-align:right;}
+
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:700;
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    line-height:1.03;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  h1.title em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--siren);
+  }
+
+  .subhead{
+    font-family:'Source Serif 4', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:#3a3a34;
+    max-width:60ch;
+    margin:0 0 22px;
+  }
+  body.lang-hi .subhead{ font-family:'Noto Serif Devanagari', serif; }
+
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tag{
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    border:1px solid var(--ink);
+    padding:4px 10px;
+    border-radius:2px;
+  }
+  .tag.siren{border-color:var(--siren); color:var(--siren);}
+
+  /* ---------- NOTE / CAVEAT BLOCK ---------- */
+  .caveat{
+    background:var(--paper-2);
+    border-left:4px solid var(--siren);
+    padding:16px 20px;
+    margin:32px 0 44px;
+    font-size:0.95rem;
+    color:#3a3a34;
+  }
+  .caveat strong{color:var(--ink);}
+
+  /* ---------- SECTION SYSTEM ---------- */
+  section{
+    margin:64px 0;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--siren);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .eyebrow::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.9rem;
+    margin:0 0 20px;
+    letter-spacing:-0.01em;
+  }
+
+  h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin:28px 0 10px;
+  }
+
+  p{margin:0 0 16px;}
+
+  figure{
+    margin:28px 0;
+  }
+  figure img{
+    width:100%;
+    min-height:80px;
+    display:block;
+    filter:grayscale(28%) contrast(1.05) sepia(8%);
+    border:1px solid var(--ink);
+    background:var(--paper-2);
+    color:var(--stamp-gray);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+  }
+  figcaption{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    color:var(--stamp-gray);
+    margin-top:8px;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- TIMELINE TABLE ---------- */
+  .timeline{
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    margin:24px 0;
+  }
+  .timeline-row{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:20px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .timeline-row:last-child{border-bottom:none;}
+  .timeline-row .when{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--olive);
+    padding-top:2px;
+  }
+
+  /* ---------- STAT STRIP ---------- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+    margin:28px 0;
+  }
+  .stat{
+    background:var(--paper);
+    padding:20px 14px;
+    text-align:center;
+  }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:2.1rem;
+    display:block;
+    color:var(--siren);
+    line-height:1;
+  }
+  .stat .label{
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--olive);
+    display:block;
+    margin-top:6px;
+  }
+
+  /* ---------- DISPUTED CLAIMS — signature element ---------- */
+  .dispute-block{
+    position:relative;
+    margin:40px 0;
+  }
+  .stamp{
+    position:absolute;
+    top:-18px;
+    right:6px;
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.12em;
+    color:var(--siren);
+    border:2.5px solid var(--siren);
+    padding:6px 14px;
+    transform:rotate(6deg);
+    border-radius:3px;
+    background:rgba(178,58,46,0.04);
+    z-index:2;
+  }
+  .versus-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:2px solid var(--ink);
+  }
+  .versus-col{
+    padding:22px 22px 24px;
+  }
+  .versus-col.claim{
+    border-right:2px dashed var(--ink);
+  }
+  .versus-col h4{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin:0 0 14px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  .versus-col.claim h4{color:var(--siren);}
+  .versus-col.rebuttal h4{color:var(--olive);}
+  .versus-col ul{
+    margin:0;
+    padding-left:18px;
+  }
+  .versus-col li{
+    margin-bottom:10px;
+    font-size:0.96rem;
+  }
+  .resolution{
+    background:var(--ink);
+    color:var(--paper);
+    padding:18px 22px;
+    font-size:0.95rem;
+    margin-top:0;
+  }
+  .resolution strong{color:#f2c9c2;}
+
+  @media (max-width:640px){
+    .versus-grid{grid-template-columns:1fr;}
+    .versus-col.claim{border-right:none; border-bottom:2px dashed var(--ink);}
+    .stat-strip{grid-template-columns:repeat(2,1fr);}
+    .stamp{position:static; display:inline-block; margin-bottom:12px; transform:rotate(-2deg);}
+    .lang-toggle-bar{padding:8px 16px;}
+  }
+
+  /* ---------- QUOTE BLOCK ---------- */
+  blockquote{
+    margin:24px 0;
+    padding:4px 0 4px 22px;
+    border-left:3px solid var(--siren);
+    font-style:italic;
+    color:#3a3a34;
+    font-size:1.05rem;
+  }
+  blockquote cite{
+    display:block;
+    margin-top:8px;
+    font-family:'Space Mono', monospace;
+    font-style:normal;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--stamp-gray);
+  }
+
+  /* ---------- OPEN QUESTIONS ---------- */
+  .qlist{
+    list-style:none;
+    margin:0;
+    padding:0;
+    counter-reset:q;
+  }
+  .qlist li{
+    counter-increment:q;
+    display:grid;
+    grid-template-columns:38px 1fr;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .qlist li:first-child{border-top:1px solid var(--line);}
+  .qlist li::before{
+    content:counter(q);
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--siren);
+  }
+
+  /* ---------- LEGAL CONTEXT ---------- */
+  .legal-note{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    padding:20px 22px;
+    font-size:0.95rem;
+  }
+
+  /* ---------- SOURCES / FOOTER ---------- */
+  .sources{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--stamp-gray);
+    line-height:1.9;
+  }
+  .sources ul{margin:8px 0 0; padding-left:18px;}
+
+  footer{
+    margin-top:80px;
+    padding-top:24px;
+    border-top:3px solid var(--ink);
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--stamp-gray);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* accessibility: visible focus */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--siren);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body id="body-root">
+
+  <div class="lang-toggle-bar">
+    <div class="lang-toggle" role="group" aria-label="Language / भाषा">
+      <button type="button" id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button type="button" id="btn-hi" onclick="setLang('hi')">हिं</button>
+    </div>
+  </div>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="file-meta">
+      <span data-lang="en" class="lang-active">Field Dossier · Public Interest Documentation</span>
+      <span data-lang="hi">फील्ड डोज़ियर · जनहित दस्तावेज़ीकरण</span>
+      <span class="right">
+        <span data-lang="en" class="lang-active">Compiled 22 Jul 2026<br>New Delhi, India</span>
+        <span data-lang="hi">संकलित 22 जुलाई 2026<br>नई दिल्ली, भारत</span>
+      </span>
+    </div>
+
+    <h1 class="title">
+      <span data-lang="en" class="lang-active">Sansad Chalo: <em>The Crackdown</em><br>at Jantar Mantar</span>
+      <span data-lang="hi">संसद चलो: <em>दमन</em><br>जंतर मंतर पर</span>
+    </h1>
+
+    <p class="subhead">
+      <span data-lang="en" class="lang-active">A documentation of the CJP-led student protests and the disputed police actions of 20–21 July 2026 — where official and organizer accounts diverge, and what remains unresolved.</span>
+      <span data-lang="hi">CJP के नेतृत्व वाले छात्र विरोध प्रदर्शनों और 20–21 जुलाई 2026 की विवादित पुलिस कार्रवाई का दस्तावेज़ीकरण — जहाँ आधिकारिक और आयोजकों के विवरण अलग-अलग हैं, और जो अभी भी अनसुलझा है।</span>
+    </p>
+
+    <div class="tags">
+      <span class="tag siren">
+        <span data-lang="en" class="lang-active">Contested Facts</span>
+        <span data-lang="hi">विवादित तथ्य</span>
+      </span>
+      <span class="tag">NEET-UG 2026</span>
+      <span class="tag">
+        <span data-lang="en" class="lang-active">Section 163 BNSS</span>
+        <span data-lang="hi">धारा 163 BNSS</span>
+      </span>
+      <span class="tag">
+        <span data-lang="en" class="lang-active">Delhi Police</span>
+        <span data-lang="hi">दिल्ली पुलिस</span>
+      </span>
+      <span class="tag">
+        <span data-lang="en" class="lang-active">Cockroach Janta Party</span>
+        <span data-lang="hi">कॉकरोच जनता पार्टी</span>
+      </span>
+    </div>
+  </header>
+
+  <div class="caveat">
+    <span data-lang="en" class="lang-active"><strong>A note before reading:</strong> this is an active, fast-moving story. Protest organizers and Delhi Police give directly conflicting accounts of what happened on 20–21 July. Where sources disagree, this document presents both versions rather than declaring one settled — see Section 5.</span>
+    <span data-lang="hi"><strong>पढ़ने से पहले एक टिप्पणी:</strong> यह एक सक्रिय, तेज़ी से बदलती हुई घटना है। विरोध आयोजक और दिल्ली पुलिस 20–21 जुलाई को हुई घटनाओं के बारे में सीधे परस्पर विरोधी विवरण देते हैं। जहाँ स्रोत असहमत हैं, यह दस्तावेज़ किसी एक को अंतिम मानने के बजाय दोनों संस्करण प्रस्तुत करता है — खंड 5 देखें।</span>
+  </div>
+
+  <figure>
+    <img src="images/01-jantar-mantar-crowd.jpg" alt="Large crowd of demonstrators gathered in a city street, evoking the scale of the Jantar Mantar protest">
+    <figcaption>
+      <span data-lang="en" class="lang-active">images/01-jantar-mantar-crowd.jpg — mass demonstration / crowd shot at Jantar Mantar or Parliament Street, 20 Jul 2026.</span>
+      <span data-lang="hi">images/01-jantar-mantar-crowd.jpg — जंतर मंतर या पार्लियामेंट स्ट्रीट पर जनप्रदर्शन / भीड़ की तस्वीर, 20 जुलाई 2026।</span>
+    </figcaption>
+  </figure>
+
+  <section id="background">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">01 — Background</span><span data-lang="hi">01 — पृष्ठभूमि</span></div>
+    <h2><span data-lang="en" class="lang-active">How the "Cockroach" movement began</span><span data-lang="hi">"कॉकरोच" आंदोलन की शुरुआत कैसे हुई</span></h2>
+
+    <p>
+      <span data-lang="en" class="lang-active">The protests are led by the <strong>Cockroach Janta Party (CJP)</strong>, a satirical student movement founded in May 2026 by activist <strong>Abhijeet Dipke</strong>. It began as an online campaign of satirical memes and grew into a mass protest movement after gaining a large social media following.</span>
+      <span data-lang="hi">इन विरोध प्रदर्शनों का नेतृत्व <strong>कॉकरोच जनता पार्टी (CJP)</strong> कर रही है, जो मई 2026 में कार्यकर्ता <strong>अभिजीत दीपके</strong> द्वारा स्थापित एक व्यंग्यात्मक छात्र आंदोलन है। यह व्यंग्यात्मक मीम्स के एक ऑनलाइन अभियान के रूप में शुरू हुआ और सोशल मीडिया पर बड़ी संख्या में फॉलोअर्स मिलने के बाद एक जनआंदोलन में बदल गया।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active">The name is a reclaimed insult — a reference to a remark by a Chief Justice of India's Supreme Court likening unemployed young people to "cockroaches." The movement adopted it as its mascot and identity.</span>
+      <span data-lang="hi">यह नाम एक अपमानजनक टिप्पणी को पुनः अपनाकर बनाया गया है — भारत के सुप्रीम कोर्ट के एक मुख्य न्यायाधीश की उस टिप्पणी के संदर्भ में, जिसमें बेरोज़गार युवाओं की तुलना "कॉकरोच" से की गई थी। आंदोलन ने इसे अपना प्रतीक और पहचान बना लिया।</span>
+    </p>
+
+    <h3><span data-lang="en" class="lang-active">What actually happened with the NEET-UG paper leak</span><span data-lang="hi">NEET-UG पेपर लीक में वास्तव में क्या हुआ</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">This part has a well-documented factual trail, separate from the protest itself. <strong>NEET-UG</strong> (the National Eligibility cum Entrance Test, India's medical college entrance exam, run by the National Testing Agency) was held on <strong>3 May 2026</strong> for over 2.27 million candidates. Investigators found that a "guess paper" had circulated in the weeks before the test, and that <strong>around 120 of roughly 400 questions</strong> in it matched the real exam — including, reportedly, all 90 Biology and all 45 Chemistry questions. Because of this overlap, the exam was <strong>cancelled on 12 May 2026</strong> and a re-test was ordered.</span>
+      <span data-lang="hi">इस हिस्से का एक अच्छी तरह से दस्तावेज़ीकृत तथ्यात्मक विवरण है, जो विरोध प्रदर्शन से अलग है। <strong>NEET-UG</strong> (नेशनल एलिजिबिलिटी कम एंट्रेंस टेस्ट, भारत की मेडिकल कॉलेज प्रवेश परीक्षा, जिसे नेशनल टेस्टिंग एजेंसी द्वारा संचालित किया जाता है) <strong>3 मई 2026</strong> को 2.27 करोड़ से अधिक उम्मीदवारों के लिए आयोजित की गई थी। जांचकर्ताओं ने पाया कि परीक्षा से हफ्तों पहले एक "गेस पेपर" प्रसारित हो रहा था, और उसमें <strong>लगभग 400 में से 120 प्रश्न</strong> असली परीक्षा से मेल खाते थे — जिसमें कथित तौर पर सभी 90 जीव विज्ञान और सभी 45 रसायन विज्ञान के प्रश्न शामिल थे। इस समानता के कारण, परीक्षा <strong>12 मई 2026 को रद्द कर दी गई</strong> और पुनः परीक्षा का आदेश दिया गया।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active">A CBI investigation traced the leak's physical path: a hard copy of the question paper was allegedly <strong>handwritten out, scanned, and converted to PDF</strong>, then sold to students at coaching centres in Rajasthan's Sikar district for between ₹2–5 lakh (roughly $2,400–$6,000) in access fees. Investigators say the paper moved through intermediaries in Pune, Nashik, and Gurgaon before being circulated widely via <strong>WhatsApp groups, Telegram channels, and coaching-centre networks</strong> across Rajasthan, Haryana, and Maharashtra. Multiple people have been arrested in connection with this.</span>
+      <span data-lang="hi">CBI जांच ने लीक के भौतिक मार्ग का पता लगाया: कथित तौर पर प्रश्नपत्र की एक हार्ड कॉपी को <strong>हाथ से लिखा गया, स्कैन किया गया और PDF में बदला गया</strong>, फिर राजस्थान के सीकर जिले के कोचिंग सेंटरों में छात्रों को ₹2–5 लाख (लगभग $2,400–$6,000) की पहुँच शुल्क पर बेचा गया। जांचकर्ताओं का कहना है कि पेपर पुणे, नासिक और गुड़गांव में बिचौलियों से होते हुए राजस्थान, हरियाणा और महाराष्ट्र में <strong>व्हाट्सएप समूहों, टेलीग्राम चैनलों और कोचिंग सेंटर नेटवर्क</strong> के माध्यम से व्यापक रूप से प्रसारित हुआ। इस संबंध में कई लोगों को गिरफ्तार किया जा चुका है।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active"><em>This is a separate, distinct incident from the 2024 NEET-UG leak</em> (which involved a different gang operating out of Hazaribagh, Jharkhand) — both scandals are sometimes discussed together since they involve the same exam and agency.</span>
+      <span data-lang="hi"><em>यह 2024 के NEET-UG लीक से एक अलग, भिन्न घटना है</em> (जिसमें झारखंड के हज़ारीबाग़ से संचालित एक अलग गिरोह शामिल था) — दोनों घोटालों की चर्चा कभी-कभी एक साथ की जाती है क्योंकि इनमें एक ही परीक्षा और एजेंसी शामिल है।</span>
+    </p>
+
+    <h3><span data-lang="en" class="lang-active">The minister's actual link to the protests — stated plainly</span><span data-lang="hi">मंत्री का विरोध प्रदर्शनों से वास्तविक संबंध — स्पष्ट रूप से कहा गया</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">No source found in this research alleges that Education Minister <strong>Dharmendra Pradhan</strong> personally leaked the paper, ordered the leak, or was part of the criminal network. The arrests and CBI findings point to coaching-centre operators, intermediaries, and a handwriting/scanning chain — not the ministry.</span>
+      <span data-lang="hi">इस शोध में मिले किसी भी स्रोत में यह आरोप नहीं लगाया गया कि शिक्षा मंत्री <strong>धर्मेंद्र प्रधान</strong> ने व्यक्तिगत रूप से पेपर लीक किया, लीक का आदेश दिया, या आपराधिक नेटवर्क का हिस्सा थे। गिरफ्तारियाँ और CBI के निष्कर्ष कोचिंग सेंटर संचालकों, बिचौलियों और हस्तलेखन/स्कैनिंग शृंखला की ओर इशारा करते हैं — मंत्रालय की ओर नहीं।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active">The demand for his resignation is a demand for <strong>political accountability</strong>, not an allegation that he committed the leak: protesters argue that as the minister overseeing the NTA (the agency that conducts the exam), repeated security failures — this is not the first NEET leak — happened on his watch, and that responsibility for systemic failure should fall on him regardless of who physically carried out the leak. That is an argument about political responsibility, and readers should treat it as such rather than as an allegation of personal wrongdoing.</span>
+      <span data-lang="hi">उनके इस्तीफे की मांग <strong>राजनीतिक जवाबदेही</strong> की मांग है, न कि यह आरोप कि उन्होंने लीक किया: प्रदर्शनकारियों का तर्क है कि NTA (परीक्षा संचालित करने वाली एजेंसी) की देखरेख करने वाले मंत्री के रूप में, बार-बार सुरक्षा विफलताएँ — यह पहला NEET लीक नहीं है — उनके कार्यकाल में हुईं, और व्यवस्थागत विफलता की जिम्मेदारी उन पर आनी चाहिए, चाहे लीक को शारीरिक रूप से किसी ने भी अंजाम दिया हो। यह राजनीतिक जिम्मेदारी के बारे में एक तर्क है, और पाठकों को इसे व्यक्तिगत गलत काम के आरोप के बजाय इसी रूप में देखना चाहिए।</span>
+    </p>
+
+    <h3><span data-lang="en" class="lang-active">Why students are protesting</span><span data-lang="hi">छात्र विरोध प्रदर्शन क्यों कर रहे हैं</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">Sourced reasons include: the cancellation and disruption of an exam over two million students had prepared for; anger that this is a recurring pattern (a similar leak scandal hit NEET-UG in 2024); allegations of similar irregularities in UGC-NET and CSIR-NET; and a broader claim that the exam system itself is unreliable and unaccountable when it fails. Beyond the exam issue specifically, reporting describes the CJP as channeling wider frustration among young, often unemployed people — the "cockroach" framing itself grew out of a remark about unemployed youth, not just exam-takers.</span>
+      <span data-lang="hi">स्रोतों में बताए गए कारणों में शामिल हैं: उस परीक्षा का रद्द होना और बाधित होना जिसके लिए बीस लाख से अधिक छात्रों ने तैयारी की थी; यह गुस्सा कि यह एक दोहराया जाने वाला पैटर्न है (2024 में NEET-UG में भी इसी तरह का लीक घोटाला हुआ था); UGC-NET और CSIR-NET में समान अनियमितताओं के आरोप; और यह व्यापक दावा कि परीक्षा प्रणाली खुद ही अविश्वसनीय है और विफल होने पर जवाबदेह नहीं है। परीक्षा के मुद्दे से परे, रिपोर्टिंग CJP को युवाओं, अक्सर बेरोज़गार लोगों, के बीच व्यापक असंतोष को माध्यम देने वाले आंदोलन के रूप में वर्णित करती है — "कॉकरोच" की यह परिभाषा खुद बेरोज़गार युवाओं के बारे में एक टिप्पणी से उपजी है, न कि केवल परीक्षार्थियों के बारे में।</span>
+    </p>
+
+    <h3><span data-lang="en" class="lang-active">Sonam Wangchuk's hunger strike, and how it actually ended</span><span data-lang="hi">सोनम वांगचुक की भूख हड़ताल, और यह वास्तव में कैसे समाप्त हुई</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">Wangchuk, a 59-year-old engineer and activist, began fasting on <strong>28 June 2026</strong> at Jantar Mantar to demand Pradhan's resignation, joined by a few hundred students at his stage. By 18 July — 20 days in — doctors were reporting his health had deteriorated, including a drop in potassium levels described as life-threatening.</span>
+      <span data-lang="hi">वांगचुक, 59 वर्षीय इंजीनियर और कार्यकर्ता, ने प्रधान के इस्तीफे की मांग को लेकर <strong>28 जून 2026</strong> को जंतर मंतर पर उपवास शुरू किया, जिसमें उनके मंच पर कुछ सौ छात्र शामिल हुए। 18 जुलाई तक — 20 दिनों बाद — डॉक्टरों ने बताया कि उनकी सेहत बिगड़ गई थी, जिसमें पोटैशियम के स्तर में गिरावट भी शामिल थी जिसे जानलेवा बताया गया।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active"><strong>On the legality of his hospitalization, the reported facts point the opposite way from an "illegal removal":</strong> Delhi Police said he was moved to hospital <strong>on the orders of the Delhi High Court</strong>, based on expert medical advice, because of his declining health. A police statement said: <em>"As per the orders of... high court and on expert medical advice due to deteriorating health condition of Sonam Wangchuk, he has been shifted to the hospital for essential medical care."</em> The court is reported to have said the life of any citizen is precious. Police also said that as they complied with the order, protesters at the site "tried to create obstruction," causing what they called a "slight commotion."</span>
+      <span data-lang="hi"><strong>उनके अस्पताल ले जाए जाने की वैधता के बारे में, रिपोर्ट किए गए तथ्य "अवैध रूप से हटाए जाने" के विपरीत दिशा की ओर इशारा करते हैं:</strong> दिल्ली पुलिस ने कहा कि उन्हें उनकी बिगड़ती सेहत के कारण, विशेषज्ञ चिकित्सा सलाह के आधार पर, <strong>दिल्ली उच्च न्यायालय के आदेशों पर</strong> अस्पताल ले जाया गया। पुलिस के एक बयान में कहा गया: <em>"उच्च न्यायालय के आदेशों के अनुसार... और सोनम वांगचुक की बिगड़ती स्वास्थ्य स्थिति के कारण विशेषज्ञ चिकित्सा सलाह पर, उन्हें आवश्यक चिकित्सा देखभाल के लिए अस्पताल स्थानांतरित किया गया है।" </em> कहा जाता है कि अदालत ने कहा कि किसी भी नागरिक का जीवन अनमोल है। पुलिस ने यह भी कहा कि जब वे आदेश का पालन कर रहे थे, तो वहाँ मौजूद प्रदर्शनकारियों ने "बाधा उत्पन्न करने की कोशिश की," जिससे उन्होंने जिसे "हल्की अफरा-तफरी" कहा, वह हुई।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active">His wife, Gitanjali Angmo, raised separate concerns — she said he was moved without her or him being informed beforehand, and that the hospital was slow to share his medical reports with the family. Those are legitimate transparency concerns about how the move was carried out, but they are different from a claim that the hospitalization itself lacked legal authorization — the reporting indicates it was court-ordered, not a unilateral police action.</span>
+      <span data-lang="hi">उनकी पत्नी, गीतांजलि आंगमो, ने अलग चिंताएँ जताईं — उन्होंने कहा कि उन्हें या उनके पति को पहले से सूचित किए बिना स्थानांतरित किया गया, और अस्पताल परिवार के साथ चिकित्सा रिपोर्ट साझा करने में धीमा था। ये इस बारे में वैध पारदर्शिता संबंधी चिंताएँ हैं कि स्थानांतरण कैसे किया गया, लेकिन ये इस दावे से अलग हैं कि अस्पताल भेजे जाने में ही कानूनी अनुमति की कमी थी — रिपोर्टिंग बताती है कि यह अदालत के आदेश पर हुआ, न कि पुलिस की एकतरफा कार्रवाई।</span>
+    </p>
+
+    <h3><span data-lang="en" class="lang-active">Student suicides following the exam's cancellation</span><span data-lang="hi">परीक्षा रद्द होने के बाद छात्रों की आत्महत्याएँ</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">This is a real and separately documented part of the story. News coverage tracked a rising count over time rather than one fixed number: <strong>4 confirmed suicides</strong> among test-takers by late May 2026 (Al Jazeera); <strong>11 reported</strong> in the 46 days between the 12 May cancellation and the 21 June re-test (Hindustan Times, via Hindus for Human Rights); and <strong>13 reported</strong> by mid-to-late June (Outlook India), with further cases, including one in Ahmedabad, reported in the weeks after. A widely circulated memorial graphic titled <em>"Justice for NEET Students"</em> — reproduced below — names <strong>20 individuals</strong> from across India, several matching names independently reported in news coverage (including Umesh Mali and Anshika Pandey, both named above). The 20-name tribute likely reflects a later, more complete tally than the earlier week-by-week news counts, though it comes from a community/advocacy source rather than a single newsroom, and some individuals are shown only as silhouettes, suggesting no photo was available or consented to.</span>
+      <span data-lang="hi">यह कहानी का एक वास्तविक और अलग से दस्तावेज़ीकृत हिस्सा है। समाचार कवरेज ने एक निश्चित संख्या के बजाय समय के साथ बढ़ती हुई गिनती को ट्रैक किया: मई 2026 के अंत तक परीक्षार्थियों में <strong>4 पुष्ट आत्महत्याएँ</strong> (अल जज़ीरा); 12 मई रद्द होने और 21 जून पुनः परीक्षा के बीच 46 दिनों में <strong>11 रिपोर्ट की गईं</strong> (हिंदुस्तान टाइम्स, हिंदूज़ फॉर ह्यूमन राइट्स के माध्यम से); और जून के मध्य से अंत तक <strong>13 रिपोर्ट की गईं</strong> (आउटलुक इंडिया), जिसमें अहमदाबाद का एक मामला भी शामिल है जो बाद के हफ्तों में सामने आया। <em>"जस्टिस फॉर NEET स्टूडेंट्स"</em> शीर्षक से व्यापक रूप से प्रसारित एक स्मारक ग्राफिक — जो नीचे पुनः प्रस्तुत है — पूरे भारत से <strong>20 व्यक्तियों</strong> के नाम बताती है, जिनमें से कई नाम समाचार कवरेज में स्वतंत्र रूप से रिपोर्ट किए गए नामों से मेल खाते हैं (जिसमें उमेश माली और अंशिका पांडे शामिल हैं, दोनों ऊपर उल्लेखित)। 20 नामों की यह श्रद्धांजलि संभवतः पहले की साप्ताहिक समाचार गणनाओं की तुलना में एक बाद की, अधिक पूर्ण गणना को दर्शाती है, हालाँकि यह एक समाचार कक्ष के बजाय एक सामुदायिक/एडवोकेसी स्रोत से आती है, और कुछ व्यक्तियों को केवल सिल्हूट के रूप में दिखाया गया है, जो बताता है कि कोई तस्वीर उपलब्ध नहीं थी या सहमति नहीं दी गई थी।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active">Cases documented by name in press coverage include a 22-year-old in Sikar, Rajasthan, who left a note reading (translated) "I am going away from this world, sorry"; a 20-year-old in Delhi who had missed a seat by four marks in 2025 and was reported to have become depressed after the cancellation; and a 23-year-old in Sikar whose family had reportedly sold land and taken on debt to fund years of coaching. Investigators in at least one case attributed the death to acute stress triggered by the exam's cancellation.</span>
+      <span data-lang="hi">प्रेस कवरेज में नाम से दस्तावेज़ीकृत मामलों में राजस्थान के सीकर की एक 22 वर्षीय शामिल हैं, जिन्होंने एक नोट छोड़ा (अनुवादित) "मैं इस दुनिया से जा रही हूँ, माफ़ करना"; दिल्ली का एक 20 वर्षीय जो 2025 में चार अंकों से सीट चूक गया था और बताया गया कि रद्द होने के बाद वह अवसादग्रस्त हो गया था; और सीकर का एक 23 वर्षीय जिसके परिवार ने कथित तौर पर वर्षों की कोचिंग के लिए जमीन बेची और कर्ज लिया था। कम से कम एक मामले में जांचकर्ताओं ने मौत का कारण परीक्षा रद्द होने से उत्पन्न तीव्र तनाव बताया।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active">This human cost is part of why the protests carry the weight they do — the paper leak is not treated by protesters as an abstract administrative failure, but as something with a documented toll on the students affected.</span>
+      <span data-lang="hi">यह मानवीय क्षति इस बात का हिस्सा है कि विरोध प्रदर्शन इतना महत्व क्यों रखते हैं — पेपर लीक को प्रदर्शनकारियों द्वारा एक अमूर्त प्रशासनिक विफलता के रूप में नहीं देखा जाता, बल्कि प्रभावित छात्रों पर एक दस्तावेज़ीकृत क्षति के रूप में देखा जाता है।</span>
+    </p>
+
+    <figure>
+      <img src="images/05-justice-for-neet-tribute.jpg" alt="Memorial graphic titled Justice for NEET Students, naming 20 individuals from across India who died by suicide after the exam's cancellation, with their names and home states">
+      <figcaption>
+        <span data-lang="en" class="lang-active">images/05-justice-for-neet-tribute.jpg — a community-circulated memorial graphic naming 20 NEET aspirants across India. This is an advocacy/tribute image, not newsroom photojournalism; individual details have not been independently re-verified here beyond the names that also appear in press coverage.</span>
+        <span data-lang="hi">images/05-justice-for-neet-tribute.jpg — पूरे भारत में 20 NEET उम्मीदवारों के नाम बताने वाला एक सामुदायिक-प्रसारित स्मारक ग्राफिक। यह एक एडवोकेसी/श्रद्धांजलि छवि है, समाचार कक्ष की फोटो-पत्रकारिता नहीं; व्यक्तिगत विवरणों की यहाँ स्वतंत्र रूप से पुनः पुष्टि नहीं की गई है, सिवाय उन नामों के जो प्रेस कवरेज में भी दिखाई देते हैं।</span>
+      </figcaption>
+    </figure>
+
+    <p style="font-size:0.9rem; color:var(--stamp-gray);">
+      <span data-lang="en" class="lang-active"><em>If you or someone you know is struggling: in India, the Kiran mental health helpline is 1800-599-0019, available 24/7 in multiple languages.</em></span>
+      <span data-lang="hi"><em>यदि आप या आपका कोई परिचित मानसिक रूप से जूझ रहा है: भारत में, किरण मानसिक स्वास्थ्य हेल्पलाइन 1800-599-0019 है, जो कई भाषाओं में 24/7 उपलब्ध है।</em></span>
+    </p>
+  </section>
+
+  <section id="timeline">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">02 — Timeline</span><span data-lang="hi">02 — घटनाक्रम</span></div>
+    <h2><span data-lang="en" class="lang-active">What happened on 20 July</span><span data-lang="hi">20 जुलाई को क्या हुआ</span></h2>
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="when"><span data-lang="en" class="lang-active">Prior days</span><span data-lang="hi">पिछले दिनों</span></div>
+        <div>
+          <span data-lang="en" class="lang-active">Delhi Police denied permission for a march from Jantar Mantar to Parliament, citing security concerns since Parliament was in session.</span>
+          <span data-lang="hi">दिल्ली पुलिस ने जंतर मंतर से संसद तक मार्च की अनुमति देने से इनकार कर दिया, क्योंकि संसद सत्र चल रहा था और सुरक्षा चिंताओं का हवाला दिया गया।</span>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="when"><span data-lang="en" class="lang-active">Before dawn</span><span data-lang="hi">भोर से पहले</span></div>
+        <div>
+          <span data-lang="en" class="lang-active">Police blocked key roads, deployed heavy security, suspended mobile internet in parts of central Delhi, and closed several Delhi Metro stations.</span>
+          <span data-lang="hi">पुलिस ने प्रमुख सड़कों को अवरुद्ध कर दिया, भारी सुरक्षा तैनात की, मध्य दिल्ली के कुछ हिस्सों में मोबाइल इंटरनेट निलंबित कर दिया, और कई दिल्ली मेट्रो स्टेशन बंद कर दिए।</span>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="when"><span data-lang="en" class="lang-active">Morning</span><span data-lang="hi">सुबह</span></div>
+        <div>
+          <span data-lang="en" class="lang-active">Prohibitory orders under <strong>Section 163 of the Bharatiya Nagarik Suraksha Sanhita (BNSS)</strong> — the provision that replaced the old CrPC Section 144 — were in force, barring public assembly.</span>
+          <span data-lang="hi"><strong>भारतीय नागरिक सुरक्षा संहिता (BNSS) की धारा 163</strong> — वह प्रावधान जिसने पुरानी CrPC धारा 144 की जगह ली — के तहत निषेधाज्ञा लागू थी, जो सार्वजनिक सभा को रोकती थी।</span>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="when"><span data-lang="en" class="lang-active">Late morning</span><span data-lang="hi">देर सुबह</span></div>
+        <div>
+          <span data-lang="en" class="lang-active">Thousands of protesters, mostly students, gathered at Jantar Mantar for the planned <strong>"Sansad Chalo" (March to Parliament)</strong> procession, despite the ban.</span>
+          <span data-lang="hi">प्रतिबंध के बावजूद, हज़ारों प्रदर्शनकारी, ज्यादातर छात्र, योजनाबद्ध <strong>"संसद चलो" (संसद तक मार्च)</strong> जुलूस के लिए जंतर मंतर पर एकत्र हुए।</span>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="when"><span data-lang="en" class="lang-active">As march began</span><span data-lang="hi">मार्च शुरू होते ही</span></div>
+        <div>
+          <span data-lang="en" class="lang-active">Protesters attempted to move past barricades toward Parliament Street and Connaught Place.</span>
+          <span data-lang="hi">प्रदर्शनकारियों ने बैरिकेड्स को पार करके पार्लियामेंट स्ट्रीट और कनॉट प्लेस की ओर बढ़ने का प्रयास किया।</span>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="when"><span data-lang="en" class="lang-active">Police response</span><span data-lang="hi">पुलिस की प्रतिक्रिया</span></div>
+        <div>
+          <span data-lang="en" class="lang-active">Officers used <strong>lathi charges</strong> (baton charges) and <strong>tear gas</strong> to disperse the crowd.</span>
+          <span data-lang="hi">अधिकारियों ने भीड़ को तितर-बितर करने के लिए <strong>लाठीचार्ज</strong> और <strong>आंसू गैस</strong> का इस्तेमाल किया।</span>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="when"><span data-lang="en" class="lang-active">Aftermath</span><span data-lang="hi">बाद की स्थिति</span></div>
+        <div>
+          <span data-lang="en" class="lang-active">Parliament Street and Connaught Place were left with scattered debris — overturned barricades, broken glass, torn clothing, and reported blood stains — described by witnesses as the visible imprint of the clash.</span>
+          <span data-lang="hi">पार्लियामेंट स्ट्रीट और कनॉट प्लेस पर बिखरा हुआ मलबा रह गया — पलटे हुए बैरिकेड्स, टूटा हुआ शीशा, फटे कपड़े, और बताए गए खून के धब्बे — जिन्हें चश्मदीदों ने झड़प के दिखाई देने वाले निशान के रूप में वर्णित किया।</span>
+        </div>
+      </div>
+    </div>
+    <p>
+      <span data-lang="en" class="lang-active">This was reported as <strong>the largest protest in India's capital in recent years</strong>, deliberately timed to coincide with the opening of the Parliament session.</span>
+      <span data-lang="hi">इसे <strong>हाल के वर्षों में भारत की राजधानी में सबसे बड़ा विरोध प्रदर्शन</strong> बताया गया, जिसे जानबूझकर संसद सत्र की शुरुआत के साथ मेल खाने के लिए समयबद्ध किया गया था।</span>
+    </p>
+  </section>
+
+  <figure>
+    <img src="images/02-tear-gas-launch.jpg" alt="Riot control officer firing a tear gas shell from a launcher toward protesters behind a barricade">
+    <figcaption>
+      <span data-lang="en" class="lang-active">images/02-tear-gas-launch.jpg — Rapid Action Force personnel firing a tear gas shell during the crackdown. Photo credit: Amit Mehra.</span>
+      <span data-lang="hi">images/02-tear-gas-launch.jpg — दमन के दौरान रैपिड एक्शन फोर्स के जवान द्वारा आंसू गैस का गोला दागा जा रहा है। फोटो श्रेय: अमित मेहरा।</span>
+    </figcaption>
+  </figure>
+
+  <figure>
+    <img src="images/03-baton-charge.jpg" alt="Police and paramilitary personnel with lathis surrounding a seated protester who is covering his head">
+    <figcaption>
+      <span data-lang="en" class="lang-active">images/03-baton-charge.jpg — Lathi charge on protesters near the barricade line, with a demonstrator seated on the ground shielding his head.</span>
+      <span data-lang="hi">images/03-baton-charge.jpg — बैरिकेड लाइन के पास प्रदर्शनकारियों पर लाठीचार्ज, जिसमें एक प्रदर्शनकारी ज़मीन पर बैठा अपना सिर बचा रहा है।</span>
+    </figcaption>
+  </figure>
+
+  <section id="scale">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">03 — By the Numbers</span><span data-lang="hi">03 — आंकड़ों में</span></div>
+    <h2><span data-lang="en" class="lang-active">Casualties and detentions, as officially reported</span><span data-lang="hi">आधिकारिक रूप से बताई गई हताहत और हिरासत की संख्या</span></h2>
+    <div class="stat-strip">
+      <div class="stat"><span class="num">~180</span><span class="label"><span data-lang="en" class="lang-active">Total injuries reported</span><span data-lang="hi">कुल घायल बताए गए</span></span></div>
+      <div class="stat"><span class="num">60</span><span class="label"><span data-lang="en" class="lang-active">Protesters injured</span><span data-lang="hi">घायल प्रदर्शनकारी</span></span></div>
+      <div class="stat"><span class="num">118</span><span class="label"><span data-lang="en" class="lang-active">Police / security injured</span><span data-lang="hi">घायल पुलिस / सुरक्षाकर्मी</span></span></div>
+      <div class="stat"><span class="num">70</span><span class="label"><span data-lang="en" class="lang-active">Protesters detained</span><span data-lang="hi">हिरासत में लिए गए प्रदर्शनकारी</span></span></div>
+    </div>
+    <p>
+      <span data-lang="en" class="lang-active"><strong>5 FIRs</strong> (First Information Reports) were registered over alleged violence, stone-pelting, and vandalism. Police said they were examining <strong>over 250 videos</strong> to identify individuals involved in the clashes.</span>
+      <span data-lang="hi">कथित हिंसा, पथराव और तोड़फोड़ को लेकर <strong>5 FIR</strong> (प्राथमिकी) दर्ज की गईं। पुलिस ने कहा कि वे झड़पों में शामिल व्यक्तियों की पहचान के लिए <strong>250 से अधिक वीडियो</strong> की जांच कर रहे हैं।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active">CJP founder Abhijeet Dipke put the wounded figure at <strong>150 protesters</strong> — well above the police's count — and organizers alleged that <strong>hundreds</strong> were detained, far above the police's stated 70.</span>
+      <span data-lang="hi">CJP संस्थापक अभिजीत दीपके ने घायलों की संख्या <strong>150 प्रदर्शनकारी</strong> बताई — जो पुलिस की गिनती से काफी अधिक है — और आयोजकों ने आरोप लगाया कि <strong>सैकड़ों</strong> लोगों को हिरासत में लिया गया, जो पुलिस द्वारा बताई गई 70 की संख्या से कहीं अधिक है।</span>
+    </p>
+  </section>
+
+  <section id="reactions">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">04 — Political Reactions</span><span data-lang="hi">04 — राजनीतिक प्रतिक्रियाएँ</span></div>
+    <h2><span data-lang="en" class="lang-active">Who responded, and how</span><span data-lang="hi">किसने प्रतिक्रिया दी, और कैसे</span></h2>
+    <ul>
+      <li>
+        <span data-lang="en" class="lang-active"><strong>Rahul Gandhi</strong> (Leader of the Opposition, Congress) camped outside PM Modi's residence the following afternoon with other MPs, giving a public call to assemble in solidarity.</span>
+        <span data-lang="hi"><strong>राहुल गांधी</strong> (विपक्ष के नेता, कांग्रेस) ने अगले दिन दोपहर को अन्य सांसदों के साथ प्रधानमंत्री मोदी के आवास के बाहर डेरा डाला, और एकजुटता में इकट्ठा होने का सार्वजनिक आह्वान किया।</span>
+      </li>
+      <li>
+        <span data-lang="en" class="lang-active">The <strong>NCP (Sharadchandra Pawar faction)</strong> extended support to the demand for Pradhan's resignation.</span>
+        <span data-lang="hi"><strong>NCP (शरदचंद्र पवार गुट)</strong> ने प्रधान के इस्तीफे की मांग का समर्थन किया।</span>
+      </li>
+      <li>
+        <span data-lang="en" class="lang-active"><strong>Union Health Minister J.P. Nadda</strong> visited RML Hospital to meet injured protesters, and separately met a CJP delegation that submitted its demands.</span>
+        <span data-lang="hi"><strong>केंद्रीय स्वास्थ्य मंत्री जे.पी. नड्डा</strong> ने घायल प्रदर्शनकारियों से मिलने के लिए RML अस्पताल का दौरा किया, और अलग से CJP के एक प्रतिनिधिमंडल से मुलाकात की जिसने अपनी मांगें प्रस्तुत कीं।</span>
+      </li>
+    </ul>
+    <blockquote>
+      <span data-lang="en" class="lang-active">Analysts note that regardless of whether the protests force any policy change, the crackdown feeds an existing opposition narrative about weakened democratic accountability — while the movement itself faces a steep climb toward concrete concessions.</span>
+      <span data-lang="hi">विश्लेषकों का कहना है कि चाहे विरोध प्रदर्शन किसी नीतिगत बदलाव को मजबूर करें या न करें, यह दमन कमज़ोर लोकतांत्रिक जवाबदेही के बारे में विपक्ष की मौजूदा कहानी को बल देता है — जबकि आंदोलन को स्वयं ठोस रियायतों की ओर एक कठिन चढ़ाई का सामना करना पड़ रहा है।</span>
+      <cite><span data-lang="en" class="lang-active">Analysis reported via Al Jazeera, 21 July 2026</span><span data-lang="hi">अल जज़ीरा के माध्यम से रिपोर्ट किया गया विश्लेषण, 21 जुलाई 2026</span></cite>
+    </blockquote>
+
+    <h3><span data-lang="en" class="lang-active">Why hasn't the government met the demand?</span><span data-lang="hi">सरकार ने मांग क्यों नहीं मानी?</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">This is worth answering carefully: reporting documents what officials have <em>done</em>, not their internal reasoning, and this page will not guess at motive. What's actually on record as of 22 July: the Education Minister has not resigned; the government sent the Health Minister to visit injured protesters and meet a CJP delegation, which reads as an attempt at outreach without a concession on the resignation demand itself; and Delhi Police maintained throughout that its restrictions and crowd-control measures were lawful. No official has publicly explained, on the record, a specific reason for declining the resignation demand. Any claim about why the government "doesn't want to" act would be speculation dressed as fact, so it's left as an open question rather than answered with invented reasoning.</span>
+      <span data-lang="hi">इसका उत्तर सावधानी से देना उचित है: रिपोर्टिंग अधिकारियों ने क्या <em>किया</em>, इसका दस्तावेज़ीकरण करती है, उनके आंतरिक तर्क का नहीं, और यह पेज मंशा का अनुमान नहीं लगाएगा। 22 जुलाई तक वास्तव में जो रिकॉर्ड पर है: शिक्षा मंत्री ने इस्तीफा नहीं दिया है; सरकार ने स्वास्थ्य मंत्री को घायल प्रदर्शनकारियों से मिलने और CJP प्रतिनिधिमंडल से मुलाकात के लिए भेजा, जिसे इस्तीफे की मांग पर कोई रियायत दिए बिना पहुँच बनाने के प्रयास के रूप में देखा जा सकता है; और दिल्ली पुलिस ने लगातार यह कहा कि उसके प्रतिबंध और भीड़ नियंत्रण उपाय कानूनी थे। किसी भी अधिकारी ने सार्वजनिक रूप से, रिकॉर्ड पर, इस्तीफे की मांग को अस्वीकार करने का कोई विशेष कारण नहीं बताया है। सरकार "क्यों नहीं चाहती" कि वह कार्रवाई करे, इस बारे में कोई भी दावा तथ्य के रूप में प्रस्तुत अटकल होगी, इसलिए इसे गढ़े हुए तर्क के साथ उत्तर देने के बजाय एक खुले प्रश्न के रूप में छोड़ा गया है।</span>
+    </p>
+  </section>
+
+  <section id="dispute">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">05 — The Central Dispute</span><span data-lang="hi">05 — केंद्रीय विवाद</span></div>
+    <h2><span data-lang="en" class="lang-active">Were the police actions unlawful?</span><span data-lang="hi">क्या पुलिस की कार्रवाई अवैध थी?</span></h2>
+    <p>
+      <span data-lang="en" class="lang-active">This is the most contested part of the story. The claims from each side directly conflict, and neither has been independently verified in full.</span>
+      <span data-lang="hi">यह कहानी का सबसे विवादित हिस्सा है। दोनों पक्षों के दावे सीधे टकराते हैं, और किसी भी पक्ष की पूरी तरह स्वतंत्र रूप से पुष्टि नहीं हुई है।</span>
+    </p>
+
+    <div class="dispute-block">
+      <span class="stamp"><span data-lang="en" class="lang-active">Disputed</span><span data-lang="hi">विवादित</span></span>
+      <div class="versus-grid">
+        <div class="versus-col claim">
+          <h4><span data-lang="en" class="lang-active">Organizers Allege</span><span data-lang="hi">आयोजकों का आरोप</span></h4>
+          <ul>
+            <li>
+              <span data-lang="en" class="lang-active">Police used <strong>"brute, borderline-lethal force"</strong> against demonstrators, per CJP spokesperson Saurav Das.</span>
+              <span data-lang="hi">CJP प्रवक्ता सौरव दास के अनुसार, पुलिस ने प्रदर्शनकारियों के खिलाफ <strong>"क्रूर, लगभग घातक बल"</strong> का इस्तेमाल किया।</span>
+            </li>
+            <li>
+              <span data-lang="en" class="lang-active"><strong>Hundreds</strong> of peaceful protesters were detained after the clashes.</span>
+              <span data-lang="hi">झड़पों के बाद <strong>सैकड़ों</strong> शांतिपूर्ण प्रदर्शनकारियों को हिरासत में लिया गया।</span>
+            </li>
+            <li>
+              <span data-lang="en" class="lang-active">Lawyers were <strong>denied access</strong> to those in detention, and no complete detainee list was provided.</span>
+              <span data-lang="hi">वकीलों को हिरासत में लिए गए लोगों से मिलने की <strong>अनुमति नहीं दी गई</strong>, और हिरासत में लिए गए लोगों की पूरी सूची नहीं दी गई।</span>
+            </li>
+            <li>
+              <span data-lang="en" class="lang-active">Videos show police striking protesters, including some already on the ground; organizers say no footage shows marcher-initiated violence.</span>
+              <span data-lang="hi">वीडियो में पुलिस को प्रदर्शनकारियों पर वार करते हुए दिखाया गया है, जिसमें कुछ पहले से ज़मीन पर पड़े हुए हैं; आयोजकों का कहना है कि किसी भी फुटेज में मार्च करने वालों द्वारा शुरू की गई हिंसा नहीं दिखाई गई।</span>
+            </li>
+            <li>
+              <span data-lang="en" class="lang-active">Some protesters required hospital treatment for head and leg injuries.</span>
+              <span data-lang="hi">कुछ प्रदर्शनकारियों को सिर और पैर की चोटों के लिए अस्पताल में इलाज की आवश्यकता पड़ी।</span>
+            </li>
+          </ul>
+        </div>
+        <div class="versus-col rebuttal">
+          <h4><span data-lang="en" class="lang-active">Delhi Police Respond</span><span data-lang="hi">दिल्ली पुलिस का जवाब</span></h4>
+          <ul>
+            <li>
+              <span data-lang="en" class="lang-active">Issued a public <strong>"fact-check"</strong> stating claims of detention and denied lawyer access were <strong>"misleading and incorrect."</strong></span>
+              <span data-lang="hi">एक सार्वजनिक <strong>"फैक्ट-चेक"</strong> जारी किया जिसमें कहा गया कि हिरासत और वकीलों को पहुँच से वंचित करने के दावे <strong>"भ्रामक और गलत"</strong> थे।</span>
+            </li>
+            <li>
+              <span data-lang="en" class="lang-active">Stated plainly: <strong>"It is clarified that no person is currently under detention."</strong></span>
+              <span data-lang="hi">स्पष्ट रूप से कहा: <strong>"यह स्पष्ट किया जाता है कि वर्तमान में कोई भी व्यक्ति हिरासत में नहीं है।"</strong></span>
+            </li>
+            <li>
+              <span data-lang="en" class="lang-active">Maintained the restrictions were lawful, aimed at protecting a high-security zone around a sitting Parliament under a valid Section 163 BNSS order.</span>
+              <span data-lang="hi">कायम रखा कि प्रतिबंध कानूनी थे, जिनका उद्देश्य एक वैध धारा 163 BNSS आदेश के तहत सत्र में चल रही संसद के आसपास एक उच्च-सुरक्षा क्षेत्र की रक्षा करना था।</span>
+            </li>
+            <li>
+              <span data-lang="en" class="lang-active">Urged the public not to circulate "unverified content."</span>
+              <span data-lang="hi">जनता से "असत्यापित सामग्री" प्रसारित न करने का आग्रह किया।</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resolution">
+        <span data-lang="en" class="lang-active"><strong>What actually happened next:</strong> shortly before a planned sit-in at Police HQ, CJP announced its lawyers had confirmed <em>all detainees were released</em> — implying detainees existed after all — and called off the protest. This leaves the core contradiction unresolved: police said no one was ever detained; organizers said people were detained and then released. No independent account of the intervening hours has been reported.</span>
+        <span data-lang="hi"><strong>वास्तव में आगे क्या हुआ:</strong> पुलिस मुख्यालय पर नियोजित धरने से कुछ समय पहले, CJP ने घोषणा की कि उसके वकीलों ने पुष्टि की है कि <em>सभी हिरासत में लिए गए लोगों को रिहा कर दिया गया</em> — जिसका अर्थ है कि हिरासत में लिए गए लोग आखिरकार मौजूद थे — और विरोध प्रदर्शन को रद्द कर दिया। इससे मूल विरोधाभास अनसुलझा रह जाता है: पुलिस ने कहा कि किसी को कभी हिरासत में नहीं लिया गया; आयोजकों ने कहा कि लोगों को हिरासत में लिया गया और फिर रिहा किया गया। बीच के घंटों का कोई स्वतंत्र विवरण रिपोर्ट नहीं किया गया है।</span>
+      </div>
+    </div>
+
+    <h3><span data-lang="en" class="lang-active">A fact-checking footnote</span><span data-lang="hi">एक फैक्ट-चेकिंग टिप्पणी</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">Independent fact-checkers flagged that several viral videos shared as footage from 20 July were actually <strong>recycled from unrelated, earlier protests</strong>, and cautioned the public to rely on verified reporting rather than isolated social media posts.</span>
+      <span data-lang="hi">स्वतंत्र फैक्ट-चेकरों ने बताया कि 20 जुलाई की फुटेज के रूप में साझा किए गए कई वायरल वीडियो वास्तव में <strong>असंबंधित, पहले के विरोध प्रदर्शनों से पुनः इस्तेमाल किए गए</strong> थे, और जनता को अलग-थलग सोशल मीडिया पोस्ट के बजाय सत्यापित रिपोर्टिंग पर भरोसा करने की चेतावनी दी।</span>
+    </p>
+
+    <h3><span data-lang="en" class="lang-active">Allegation: expired tear gas shells were used</span><span data-lang="hi">आरोप: एक्सपायर्ड आंसू गैस के गोले इस्तेमाल किए गए</span></h3>
+    <p>
+      <span data-lang="en" class="lang-active">This allegation is real and did circulate — but it originates from social media, not a police admission or independent lab finding. Videos shared after the 20 July crackdown showed protesters, including CJP leader Ashutosh Ranka, holding up the remains of an exploded tear gas shell with markings reportedly showing a <strong>manufacture date of December 2022 and an expiry date of December 2025</strong>. The claim spread widely online, with users accusing Delhi Police of using "expired goods." As of this writing, this is an <strong>unverified social-media allegation</strong>, not a fact confirmed by Delhi Police, an independent lab, or a government inquiry.</span>
+      <span data-lang="hi">यह आरोप वास्तविक है और वाकई प्रसारित हुआ — लेकिन यह सोशल मीडिया से उत्पन्न हुआ है, न कि पुलिस की स्वीकृति या स्वतंत्र प्रयोगशाला के निष्कर्ष से। 20 जुलाई की कार्रवाई के बाद साझा किए गए वीडियो में प्रदर्शनकारियों, जिसमें CJP नेता आशुतोष रांका भी शामिल हैं, को एक फटे हुए आंसू गैस के गोले के अवशेष दिखाते हुए देखा गया, जिस पर कथित तौर पर <strong>दिसंबर 2022 की निर्माण तिथि और दिसंबर 2025 की समाप्ति तिथि</strong> अंकित थी। यह दावा ऑनलाइन व्यापक रूप से फैला, जिसमें उपयोगकर्ताओं ने दिल्ली पुलिस पर "एक्सपायर्ड सामान" इस्तेमाल करने का आरोप लगाया। इस लेखन के समय तक, यह एक <strong>असत्यापित सोशल-मीडिया आरोप</strong> है, न कि दिल्ली पुलिस, किसी स्वतंत्र प्रयोगशाला, या सरकारी जांच द्वारा पुष्ट तथ्य।</span>
+    </p>
+    <p>
+      <span data-lang="en" class="lang-active"><strong>On the specific claim that expired tear gas is "poisoned" and causes permanent eye damage:</strong> no source found supports this. If anything, available reporting points the other way — in a separate, earlier case in Haryana involving a similar allegation against police, a retired Director General of Police stated on record that expired tear gas shells <strong>do not have adverse effects on human health</strong>; they simply become <strong>less effective and sometimes fail to detonate at all</strong>. No report was found linking the 20 July shells to any documented permanent eye injury. This claim should be treated as <strong>unconfirmed</strong> rather than repeated as fact.</span>
+      <span data-lang="hi"><strong>इस विशेष दावे के बारे में कि एक्सपायर्ड आंसू गैस "ज़हरीली" होती है और स्थायी आँख की क्षति का कारण बनती है:</strong> इसका समर्थन करने वाला कोई स्रोत नहीं मिला। यदि कुछ भी है, तो उपलब्ध रिपोर्टिंग विपरीत दिशा की ओर इशारा करती है — हरियाणा में पुलिस के खिलाफ इसी तरह के आरोप से जुड़े एक अलग, पहले के मामले में, एक सेवानिवृत्त पुलिस महानिदेशक ने रिकॉर्ड पर कहा कि एक्सपायर्ड आंसू गैस के गोलों का <strong>मानव स्वास्थ्य पर कोई प्रतिकूल प्रभाव नहीं होता</strong>; वे बस <strong>कम प्रभावी हो जाते हैं और कभी-कभी बिल्कुल भी नहीं फटते</strong>। 20 जुलाई के गोलों को किसी भी दस्तावेज़ीकृत स्थायी आँख की चोट से जोड़ने वाली कोई रिपोर्ट नहीं मिली। इस दावे को तथ्य के रूप में दोहराने के बजाय <strong>अपुष्ट</strong> माना जाना चाहिए।</span>
+    </p>
+
+    <figure>
+      <img src="images/04-tear-gas-shell-label.jpg" alt="Close-up of a tear smoke shell casing showing a printed label with manufacture and expiry-adjacent dates">
+      <figcaption>
+        <span data-lang="en" class="lang-active">images/04-tear-gas-shell-label.jpg — a shell casing labeled "TEAR SMOKE SHELL SOFT NOSE (LR)," manufactured by BSF Tekanpur, showing dates read as 12/22 and 12/25. This is the kind of image that circulated online in support of the expired-shell allegation; its provenance and connection to 20 July have not been independently confirmed here.</span>
+        <span data-lang="hi">images/04-tear-gas-shell-label.jpg — "TEAR SMOKE SHELL SOFT NOSE (LR)" लेबल वाला एक शेल केसिंग, जो BSF टेकनपुर द्वारा निर्मित है, जिस पर 12/22 और 12/25 के रूप में पढ़ी गई तारीखें दिखाई गई हैं। यह उस तरह की छवि है जो एक्सपायर्ड-शेल आरोप के समर्थन में ऑनलाइन प्रसारित हुई; इसकी उत्पत्ति और 20 जुलाई से संबंध की यहाँ स्वतंत्र रूप से पुष्टि नहीं की गई है।</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="legal">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">06 — Legal Context</span><span data-lang="hi">06 — कानूनी संदर्भ</span></div>
+    <h2><span data-lang="en" class="lang-active">Section 163 BNSS, formerly Section 144 CrPC</span><span data-lang="hi">धारा 163 BNSS, जो पहले CrPC की धारा 144 थी</span></h2>
+    <div class="legal-note">
+      <p>
+        <span data-lang="en" class="lang-active">Section 163 of the BNSS — the successor to the old CrPC Section 144 — allows police or a magistrate to prohibit assembly in an area to prevent apprehended danger to public order.</span>
+        <span data-lang="hi">BNSS की धारा 163 — पुरानी CrPC धारा 144 की उत्तराधिकारी — पुलिस या मजिस्ट्रेट को सार्वजनिक व्यवस्था के लिए आशंकित खतरे को रोकने के लिए किसी क्षेत्र में सभा को प्रतिबंधित करने की अनुमति देती है।</span>
+      </p>
+      <p>
+        <span data-lang="en" class="lang-active">This provision has a well-documented history of being invoked against protest movements across the political spectrum in Delhi, including past actions against AAP workers, the wrestlers' protest at Jantar Mantar, and TMC protests outside the Election Commission — and it has previously faced court scrutiny over whether specific invocations were justified.</span>
+        <span data-lang="hi">इस प्रावधान का दिल्ली में राजनीतिक स्पेक्ट्रम में विरोध प्रदर्शनों के खिलाफ लागू किए जाने का एक अच्छी तरह से दस्तावेज़ीकृत इतिहास है, जिसमें AAP कार्यकर्ताओं, जंतर मंतर पर पहलवानों के विरोध प्रदर्शन, और चुनाव आयोग के बाहर TMC विरोध प्रदर्शनों के खिलाफ पिछली कार्रवाइयाँ शामिल हैं — और इसे पहले भी अदालत की जांच का सामना करना पड़ा है कि क्या विशेष रूप से लागू करना उचित था।</span>
+      </p>
+      <p>
+        <span data-lang="en" class="lang-active">Whether its use on 20 July 2026 was a proportionate, lawful measure or an overreach used to suppress dissent is precisely the point of dispute between organizers and the government. No court ruling on this specific instance had been reported as of 22 July 2026.</span>
+        <span data-lang="hi">क्या 20 जुलाई 2026 को इसका इस्तेमाल एक आनुपातिक, कानूनी उपाय था या असंतोष को दबाने के लिए इस्तेमाल की गई एक ज़्यादती, यही आयोजकों और सरकार के बीच विवाद का सटीक बिंदु है। 22 जुलाई 2026 तक इस विशेष मामले पर किसी अदालती फैसले की सूचना नहीं मिली थी।</span>
+      </p>
+    </div>
+  </section>
+
+  <section id="open-questions">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">07 — Unresolved</span><span data-lang="hi">07 — अनसुलझा</span></div>
+    <h2><span data-lang="en" class="lang-active">Open questions</span><span data-lang="hi">खुले सवाल</span></h2>
+    <ul class="qlist">
+      <li>
+        <span data-lang="en" class="lang-active">The exact number detained on 20 July remains disputed — police say 70 with legal action to follow; organizers claimed a much higher figure and alleged initial denial of lawyer access, which police deny occurred at all.</span>
+        <span data-lang="hi">20 जुलाई को हिरासत में लिए गए लोगों की सटीक संख्या विवादित बनी हुई है — पुलिस का कहना है कि 70 लोगों पर आगे कानूनी कार्रवाई होगी; आयोजकों ने कहीं अधिक संख्या का दावा किया और शुरुआत में वकीलों तक पहुँच से इनकार का आरोप लगाया, जिससे पुलिस पूरी तरह इनकार करती है।</span>
+      </li>
+      <li>
+        <span data-lang="en" class="lang-active">Whether any independent investigation into police conduct during the 20 July march, as demanded by organizers, will be initiated. (Note: this is separate from Wangchuk's hospitalization on 18 July, which was court-ordered, not a unilateral police act — see Section 01.)</span>
+        <span data-lang="hi">क्या 20 जुलाई के मार्च के दौरान पुलिस के आचरण की कोई स्वतंत्र जांच, जैसा कि आयोजकों ने मांग की है, शुरू की जाएगी। (ध्यान दें: यह 18 जुलाई को वांगचुक के अस्पताल भेजे जाने से अलग है, जो अदालत के आदेश पर हुआ था, न कि पुलिस की एकतरफा कार्रवाई — खंड 01 देखें।)</span>
+      </li>
+      <li>
+        <span data-lang="en" class="lang-active">Whether any of the 5 FIRs from 20 July will lead to prosecutions, and against whom.</span>
+        <span data-lang="hi">क्या 20 जुलाई की 5 FIR में से किसी के परिणामस्वरूप अभियोजन होगा, और किसके खिलाफ।</span>
+      </li>
+      <li>
+        <span data-lang="en" class="lang-active">Whether Education Minister Dharmendra Pradhan will face any government action or resign — and whether the government will state, on the record, its reasoning either way.</span>
+        <span data-lang="hi">क्या शिक्षा मंत्री धर्मेंद्र प्रधान को किसी सरकारी कार्रवाई का सामना करना पड़ेगा या वे इस्तीफा देंगे — और क्या सरकार किसी भी तरह से रिकॉर्ड पर अपना तर्क बताएगी।</span>
+      </li>
+      <li>
+        <span data-lang="en" class="lang-active">How many people, if any, are ultimately prosecuted in the NEET-UG 2026 leak case, beyond those already arrested.</span>
+        <span data-lang="hi">NEET-UG 2026 लीक मामले में, पहले से गिरफ्तार लोगों के अलावा, अंततः कितने और लोगों पर मुकदमा चलाया जाएगा, यदि कोई हो।</span>
+      </li>
+      <li>
+        <span data-lang="en" class="lang-active">What comes next — CJP has said it will not hold further street marches in Delhi due to safety concerns, while continuing to press its demands through other means.</span>
+        <span data-lang="hi">आगे क्या होगा — CJP ने कहा है कि सुरक्षा चिंताओं के कारण वह दिल्ली में आगे कोई सड़क मार्च आयोजित नहीं करेगी, जबकि अन्य माध्यमों से अपनी मांगों पर ज़ोर देना जारी रखेगी।</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="sources">
+    <div class="eyebrow"><span data-lang="en" class="lang-active">08 — Sources</span><span data-lang="hi">08 — स्रोत</span></div>
+    <div class="sources">
+      <span data-lang="en" class="lang-active">Compiled from reporting by:</span>
+      <span data-lang="hi">निम्नलिखित की रिपोर्टिंग से संकलित:</span>
+      <ul>
+        <li>Al Jazeera — <span data-lang="en" class="lang-active">multiple articles, 18–21 Jul 2026</span><span data-lang="hi">कई लेख, 18–21 जुलाई 2026</span></li>
+        <li>Bloomberg — 20 Jul 2026</li>
+        <li>IBTimes UK — 21 Jul 2026</li>
+        <li>News9live / ANI / Outlook India / Free Press Journal — <span data-lang="en" class="lang-active">21 Jul 2026 (detention dispute &amp; police fact-check)</span><span data-lang="hi">21 जुलाई 2026 (हिरासत विवाद और पुलिस फैक्ट-चेक)</span></li>
+        <li>OneWorldNews — <span data-lang="en" class="lang-active">Jantar Mantar timeline</span><span data-lang="hi">जंतर मंतर घटनाक्रम</span></li>
+        <li>Deccan Chronicle — <span data-lang="en" class="lang-active">live coverage</span><span data-lang="hi">लाइव कवरेज</span></li>
+        <li>Malay Mail / India TV News — <span data-lang="en" class="lang-active">18 Jul 2026 (Wangchuk hospitalization)</span><span data-lang="hi">18 जुलाई 2026 (वांगचुक का अस्पताल भेजा जाना)</span></li>
+        <li>SCC Online / Wikipedia (2026 NEET controversy) / MedBound Times / Medical Dialogues — <span data-lang="en" class="lang-active">NEET-UG 2026 leak mechanism &amp; CBI findings</span><span data-lang="hi">NEET-UG 2026 लीक तंत्र और CBI के निष्कर्ष</span></li>
+        <li>Al Jazeera / Outlook India / Hindus for Human Rights (citing Hindustan Times) — <span data-lang="en" class="lang-active">student suicides following the 2026 NEET cancellation</span><span data-lang="hi">2026 NEET रद्द होने के बाद छात्रों की आत्महत्याएँ</span></li>
+        <li>CNN — <span data-lang="en" class="lang-active">22 Jul 2026 (protest scale &amp; internet shutdown context)</span><span data-lang="hi">22 जुलाई 2026 (विरोध प्रदर्शन का पैमाना और इंटरनेट शटडाउन संदर्भ)</span></li>
+        <li>The Tribune — <span data-lang="en" class="lang-active">21 Jul 2026 (expired tear gas shell allegation)</span><span data-lang="hi">21 जुलाई 2026 (एक्सपायर्ड आंसू गैस शेल आरोप)</span></li>
+        <li><span data-lang="en" class="lang-active">"Justice for NEET Students" memorial graphic — community-circulated tribute, user-provided</span><span data-lang="hi">"जस्टिस फॉर NEET स्टूडेंट्स" स्मारक ग्राफिक — सामुदायिक रूप से प्रसारित श्रद्धांजलि, उपयोगकर्ता द्वारा प्रदान की गई</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>
+      <span data-lang="en" class="lang-active">Dossier compiled 22 July 2026 — figures may change as reporting develops.</span>
+      <span data-lang="hi">डोज़ियर 22 जुलाई 2026 को संकलित — रिपोर्टिंग आगे बढ़ने के साथ आंकड़े बदल सकते हैं।</span>
+    </span>
+    <span>
+      <span data-lang="en" class="lang-active">Independent documentation, not affiliated with CJP or Delhi Police.</span>
+      <span data-lang="hi">स्वतंत्र दस्तावेज़ीकरण, CJP या दिल्ली पुलिस से संबद्ध नहीं।</span>
+    </span>
+  </footer>
+
+</div>
+
+<script>
+  function setLang(lang){
+    document.querySelectorAll('[data-lang]').forEach(function(el){
+      if(el.getAttribute('data-lang') === lang){
+        el.classList.add('lang-active');
+      } else {
+        el.classList.remove('lang-active');
+      }
+    });
+    document.getElementById('body-root').classList.toggle('lang-hi', lang === 'hi');
+    document.getElementById('html-root').setAttribute('lang', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-hi').classList.toggle('active', lang === 'hi');
+    try { window.scrollTo(0,0); } catch(e){}
+  }
+</script>
+
+</body>
+</html>
